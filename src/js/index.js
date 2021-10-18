@@ -1,18 +1,9 @@
 
 
 import '../sass/style.scss';
-import newPageList from './PageList';
-import newHome from './Home';
-import newPageDetail from './PageDetail';
-// import newRoutes from './routes';
+import * as routes from './routes'
 
-
-const routes = {
-  "": newHome,
-  "pagelist": newPageList,
-  "pagedetail": newPageDetail
-};
-
+const route = routes.default
 
 let pageArgument;
 
@@ -22,7 +13,7 @@ const setRoute = () => {
   pageArgument = path[1] || "";
 
   var pageContent = document.querySelector("#pageContent");
-  routes[path[0]](pageArgument)
+  route[path[0]](pageArgument)
   //  routes[pagelist]
 
   return true;
