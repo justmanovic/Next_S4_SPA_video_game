@@ -2,12 +2,21 @@ function Home() {
   const KEY = process.env.KEY
   const preparePage = () => {
     let articles = "";
+    let searchedPage = 1;
+    let showMoreButton = document.querySelector("#show-more")
 
-    const fetchList = (url, argument) => {
-      let finalURL = url + "?key=" + KEY;
+    showMoreButton.addEventListener("click", () => {
+      searchedPage += 1
+      console.log(searchedPage)
+      fetchList("https://api.rawg.io/api/games", "", searchedPage)
+    })
+
+    const fetchList = (url, argument, page) => {
+      let finalURL = url + "?key=" + KEY + "&page=" + page;
       if (argument) {
-        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY;
+        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page;
       }
+      console.log(finalURL)
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
@@ -25,7 +34,7 @@ function Home() {
         });
     };
 
-    fetchList("https://api.rawg.io/api/games");
+    fetchList("https://api.rawg.io/api/games", "", searchedPage);
   };
 
   // https://api.rawg.io/api/games?search=303%20squadron&search_precise=true&key=ee16de9559db45799581e016de56efca
@@ -37,6 +46,7 @@ function Home() {
       <section class="page-list">
         <div class="articles">...loading</div>
       </section>
+      <button class="show-more" id="show-more" >Show more</button>
     `;
 
     preparePage();

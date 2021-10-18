@@ -1,21 +1,34 @@
 import key from './key';
 const KEY = key()
 
-function PageList(argument = "") {
+function PageList(argument = "", selectedPlatform = "") {
+  console.log("la plateforme sélectionnée est", selectedPlatform)
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
     let articles = "";
-
-    const fetchList = (url, argument) => {
+    
+    const fetchList = (url, game) => {
       let finalURL = url + "?key=" + KEY;
       if (argument) {
         finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY;
       }
-
+      
       fetch(`${finalURL}`)
-        .then((response) => response.json())
-        .then((response) => {
-          response.results.forEach((article) => {
+      .then((response) => response.json())
+      .then((response) => {
+          let articleList = response.results
+          // response.results.forEach((article) => {
+            // response.results.filter(article => article.platforms[0].platform.name.includes("Xbox")).forEach((article) => {
+            // console.log(response.results
+            //   .filter(article => article.platforms
+            //     .map(platformObject => platformObject.platform.name).includes("Xbox 360")))
+          if (selectedPlatform !== ""){
+            articleList = articleList.filter(article => article.platforms
+              .map(platformObject => platformObject.platform.name).includes(selectedPlatform))
+          }
+          
+            articleList
+              .forEach((article) => {
             articles += `
                   <div class="cardGame">
                     <h1>${article.name}</h1>
@@ -23,6 +36,11 @@ function PageList(argument = "") {
                     <a href = "#pagedetail/${article.id}">${article.id}</a>
                   </div>
                 `;
+            console.log(article.platforms)
+            console.log(article.platforms.map(Object.values))
+            console.log(article.platforms.map(platformObject => platformObject.platform.name))
+            console.log(article.platforms.map(platformObject => platformObject.platform.name).includes("Xbox 360"))
+
           });
           document.querySelector(".page-list .articles").innerHTML = articles;
         });

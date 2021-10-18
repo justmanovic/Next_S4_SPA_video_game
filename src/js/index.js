@@ -2,18 +2,20 @@
 
 import '../sass/style.scss';
 import * as routes from './routes'
-
+const searchForm = document.querySelector("#search-form")
+const findGameInput = document.querySelector("#find-game")
+const selectPlatform = document.querySelector("select")
 const route = routes.default
 
 let pageArgument;
 
-const setRoute = () => {
+const setRoute = (selectedPlatform = "") => {
   let path = window.location.hash.substring(1).split("/");
   console.log(path)
   pageArgument = path[1] || "";
 
   var pageContent = document.querySelector("#pageContent");
-  route[path[0]](pageArgument)
+  route[path[0]](pageArgument, selectedPlatform)
   //  routes[pagelist]
 
   return true;
@@ -21,3 +23,12 @@ const setRoute = () => {
 
 window.addEventListener("hashchange", () => setRoute());
 window.addEventListener("DOMContentLoaded", () => setRoute());
+selectPlatform.addEventListener("change", () => setRoute(selectPlatform[selectPlatform.options.selectedIndex].value))
+
+
+
+
+searchForm.addEventListener("submit", () => {
+  searchForm.action = `index-webpack.html?#pagelist/${findGameInput.value.replace(/\s+/g, "-")}`
+})
+
