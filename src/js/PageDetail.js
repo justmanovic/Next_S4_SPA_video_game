@@ -2,11 +2,8 @@ import key from './key';
 const KEY = key()
 
 function PageDetail(argument) {
-
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
-
-
     const fetchGame = (url, argument) => {
       let finalURL = url + argument + "?key=" + KEY;
       console.log(finalURL)
@@ -34,7 +31,6 @@ function PageDetail(argument) {
           <h1 class="title"></h1>
           <p class="release-date">Release date : <span></span></p>
           <p class="description"></p>
-
         </div>
       </section>
     `;
