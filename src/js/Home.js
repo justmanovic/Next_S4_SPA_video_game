@@ -1,6 +1,10 @@
-function Home() {
-  const KEY = process.env.KEY
+import key from './key';
+const KEY = key()
+
+function Home(argument = "", selectedPlatform = "") {
+  console.log("la plateforme sélectionnée est", selectedPlatform)
   const preparePage = () => {
+    let cleanedArgument = argument.replace(/\s+/g, "-");
     let articles = "";
     let searchedPage = 1;
     let showMoreButton = document.querySelector("#show-more")
@@ -16,17 +20,27 @@ function Home() {
       if (argument) {
         finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page;
       }
-      console.log(finalURL)
+      // console.log("url final :", finalURL)
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
-          response.results.forEach((article) => {
+          let articleList = response.results
+          // console.log("article liste 1 :", articleList)
+          if (selectedPlatform !== "") {
+            // console.log("je suis dans le if selected platform et plateform : ", selectedPlatform)
+            articleList = articleList.filter(article => article.platforms
+              .map(platformObject => platformObject.platform.name).includes(selectedPlatform))
+
+          }
+
+          console.log("articleListe 2 : ", articleList)
+
+          articleList.forEach((article) => {
             articles += `
                   <div class="cardGame">
+                    <a href="#pagedetail/${article.id}"><div><img src=${article.background_image}></img></div></a>
                     <h1>${article.name}</h1>
-                    <h4>${article.released}</h4>
-                    <a href = "#pagedetail/${article.id}">${article.id}</a>
                   </div>
                 `;
           });
@@ -34,29 +48,22 @@ function Home() {
         });
     };
 
-    fetchList("https://api.rawg.io/api/games", "", searchedPage);
+    fetchList("https://api.rawg.io/api/games", cleanedArgument, searchedPage);
   };
-
-  // https://api.rawg.io/api/games?search=303%20squadron&search_precise=true&key=ee16de9559db45799581e016de56efca
 
   const render = () => {
     pageContent.innerHTML = `
-      <h2>Welcome</h2>
-      <p>The Hyper Progame is the world’s premier event for computer and video games and related products. At The Hyper Progame, the video game industry’s top talent pack the Los Angeles Convention Center, connecting tens of thousands of the best, brightest, and most innovative in the interactive entertainment industry. For three exciting days, leading-edge companies, groundbreaking new technologies, and never-before-seen products will be showcased. The Hyper Progame connects you with both new and existing partners, industry executives, gamers, and social influencers providing unprecedented exposure</p>
+      
       <section class="page-list">
         <div class="articles">...loading</div>
       </section>
       <button class="show-more" id="show-more" >Show more</button>
     `;
-
     preparePage();
   };
 
   render();
 };
 
-const testFunction = () => {
-  console.log("TEST OK")
-}
 
 export default Home;

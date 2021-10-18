@@ -1,7 +1,13 @@
 import key from './key';
 const KEY = key()
 
+const selectPlatform = document.querySelector("select")
+const welcomeMessage = document.querySelector(".welcome-message")
+
 function PageDetail(argument) {
+  welcomeMessage.classList.add("hidden")
+  selectPlatform.classList.add("hidden")
+
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
     const fetchGame = (url, argument) => {

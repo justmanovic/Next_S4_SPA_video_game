@@ -4,7 +4,7 @@ import newPageDetail from './PageDetail'
 
 const routes = {
   "": newHome,
-  "pagelist": newPageList,
+  // "pagelist": newPageList,
   "pagedetail": newPageDetail
 };
 
