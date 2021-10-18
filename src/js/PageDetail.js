@@ -1,5 +1,7 @@
+import key from './key';
+const KEY = key()
+
 function PageDetail(argument) {
-  const KEY = process.env.KEY
 
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
