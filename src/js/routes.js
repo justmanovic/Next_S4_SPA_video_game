@@ -1,6 +1,6 @@
 
-// const routes = {
-//   "": Home,
-//   "pagelist": PageList,
-//   "pagedetail": PageDetail
-// };
+const routes = {
+  "": Home,
+  "pagelist": PageList,
+  "pagedetail": PageDetail
+};
