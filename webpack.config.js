@@ -52,5 +52,5 @@ module.exports = {
     new Dotenv()
   ],
 
-  mode: 'production',
+  mode: 'development',
 };

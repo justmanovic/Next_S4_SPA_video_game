@@ -68,12 +68,11 @@ body {
 
         &:focus {
           outline: 0;
-          border: 4px $white solid;
+          border: 2px white solid;
         }
 
         &::placeholder {
           color: rgb(184, 183, 183);
-          // transform: translateX(1.75rem);
         }
       }
       
@@ -81,7 +80,7 @@ body {
         position: absolute;
         top:0;
         left: 0.75rem;
-        transform: translateY(60%);
+        transform: translateY(70%);
       }
     }
 
@@ -133,13 +132,14 @@ body {
   display: none;
 }
 
-button {
+button.show-more {
   @include red-white;
   padding: 0.5rem;
   border: 0;
   cursor: pointer;
 
-  &:hover {
-    background-color: blue;
+  &:hover {
+    background-color:blue;
   }
 }
+

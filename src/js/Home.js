@@ -1,5 +1,4 @@
-import key from './key';
-const KEY = key()
+const KEY = process.env.KEY
 
 function Home(argument = "", selectedPlatform = "") {
   const selectPlatform = document.querySelector("select")

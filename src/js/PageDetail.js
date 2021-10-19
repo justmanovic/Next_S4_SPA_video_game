@@ -1,5 +1,4 @@
-import key from './key';
-const KEY = key()
+const KEY = process.env.KEY
 
 const selectPlatform = document.querySelector("select")
 const welcomeMessage = document.querySelector(".welcome-message")
