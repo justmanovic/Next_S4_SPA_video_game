@@ -21,7 +21,7 @@ function Home(argument = "", selectedPlatform = "") {
     })
 
     const fetchList = (url, argument, page) => {
-      let finalURL = url + "?key=" + KEY + "&page=" + page;
+      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page=" + page;
       if (argument) {
         finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page;
       }

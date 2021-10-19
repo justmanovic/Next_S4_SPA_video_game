@@ -43,7 +43,7 @@ body {
   .container {
     // border: 2px red solid;
     position: relative;
-    padding: 4rem 25rem;
+    padding: 4rem 10rem;
 
     h1 {
       color: $red;
@@ -139,7 +139,7 @@ button.show-more {
   cursor: pointer;
 
   &:hover {
-    background-color:blue;
+    opacity: 0.8;
   }
 }
 
