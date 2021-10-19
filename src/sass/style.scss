@@ -44,6 +44,9 @@ body {
     // border: 2px red solid;
     position: relative;
     padding: 4rem 10rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-width: 1000px;
 
     h1 {
       color: $red;
@@ -122,10 +125,13 @@ body {
         width: 100%;
         height: 100%;
         object-fit: cover;
+
+        &:hover {
+          opacity: 0.8;
+        }
       }
     }
   }
-  
 }
 
 .hidden {
@@ -143,3 +149,19 @@ button.show-more {
   }
 }
 
+.img-game {
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+
+.page-detail {
+  .article {
+    div {
+      margin: 2rem 0;
+  
+    }
+  }
+}

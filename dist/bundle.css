@@ -35,6 +35,9 @@ body a:hover {
 body .container {
   position: relative;
   padding: 4rem 10rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-width: 1000px;
 }
 body .container h1 {
   color: #d32b2b;
@@ -103,6 +106,9 @@ body .cardGame > a > div > img {
   height: 100%;
   object-fit: cover;
 }
+body .cardGame > a > div > img:hover {
+  opacity: 0.8;
+}
 
 .hidden {
   display: none;
@@ -117,4 +123,15 @@ button.show-more {
 }
 button.show-more:hover {
   opacity: 0.8;
+}
+
+.img-game {
+  width: 100%;
+}
+.img-game img {
+  width: 100%;
+}
+
+.page-detail .article div {
+  margin: 2rem 0;
 }
