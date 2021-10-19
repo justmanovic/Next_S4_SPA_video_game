@@ -2,6 +2,12 @@ import key from './key';
 const KEY = key()
 
 function Home(argument = "", selectedPlatform = "") {
+  const selectPlatform = document.querySelector("select")
+  const welcomeMessage = document.querySelector(".welcome-message")
+
+  welcomeMessage.classList.remove("hidden")
+  selectPlatform.classList.remove("hidden")
+
   console.log("la plateforme sélectionnée est", selectedPlatform)
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");

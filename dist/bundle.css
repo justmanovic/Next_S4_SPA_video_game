@@ -5,6 +5,7 @@
 /*!****************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[2].use[3]!./src/sass/style.scss (1) ***!
   \****************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -14,13 +15,16 @@
 body {
   font-family: "Open Sans";
   background-color: #131313;
-  color: white;
+  color: #dad0d0;
 }
 body header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 2rem;
+}
+body p {
+  line-height: 150%;
 }
 body a {
   color: inherit;
@@ -29,20 +33,12 @@ body a {
 body a:hover {
   text-decoration: underline;
 }
-body .menu {
-  border: 1px red solid;
-  display: flex;
-}
-body .menu a {
-  margin-right: 1rem;
-}
 body .container {
-  border: 2px red solid;
   position: relative;
-  padding: 3rem;
+  padding: 4rem 25rem;
 }
 body .container h1 {
-  color: #ff1414;
+  color: #d32b2b;
 }
 body .container h2 {
   margin-bottom: 1rem;
@@ -53,14 +49,19 @@ body .container #search-form {
 body .container #search-form input {
   padding: 0.5rem;
   border-radius: 2rem;
-  border: 2px white solid;
+  border: 2px #dad0d0 solid;
   background-color: transparent;
   width: 15rem;
   font-family: inherit;
+  padding-left: 3rem;
+  color: #dad0d0;
+}
+body .container #search-form input:focus {
+  outline: 0;
+  border: 4px #dad0d0 solid;
 }
 body .container #search-form input::placeholder {
   color: #b8b7b7;
-  transform: translateX(1.75rem);
 }
 body .container #search-form .fas.fa-search {
   position: absolute;
@@ -69,24 +70,29 @@ body .container #search-form .fas.fa-search {
   transform: translateY(60%);
 }
 body .container select {
-  background-color: red;
-  color: white;
+  background-color: #d32b2b;
+  color: #dad0d0;
   padding: 0.5rem;
   border: 0;
   margin: 2rem 0;
+  color: white;
+  width: 15rem;
+}
+body .container select:focus {
+  outline: 0;
 }
 body .articles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }
 body .cardGame {
-  border: 2px rgba(0, 255, 0, 0.11) solid;
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
 }
 body .cardGame h1 {
-  color: white;
+  color: #dad0d0;
   margin-top: 0.5rem;
 }
 body .cardGame > a > div {
@@ -101,4 +107,15 @@ body .cardGame > a > div > img {
 
 .hidden {
   display: none;
+}
+
+button {
+  background-color: #d32b2b;
+  color: #dad0d0;
+  padding: 0.5rem;
+  border: 0;
+  cursor: pointer;
+}
+button:hover  {
+  background-color: blue;
 }
