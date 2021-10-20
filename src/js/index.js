@@ -4,6 +4,10 @@ const searchForm = document.querySelector("#search-form")
 const findGameInput = document.querySelector("#find-game")
 const selectPlatform = document.querySelector("select")
 const route = routes.default
+console.log("hello")
+
+console.log(process.env.NODE_ENV)
+
 
 let pageArgument;
 
