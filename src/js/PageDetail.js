@@ -38,10 +38,6 @@ function PageDetail(argument) {
           articleDOM.querySelector("p.buy").innerHTML = storesStr
           articleDOM.querySelector(".img-game > a").href = website
           articleDOM.querySelector(".img-game > a").target = "_blank"
-
-
-
-
         });
     };
 
