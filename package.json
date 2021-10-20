@@ -12,11 +12,12 @@
   "license": "ISC",
   "devDependencies": {},
   "dependencies": {
-    "autoprefixer": "^10.3.7",
     "@babel/core": "^7.15.8",
     "@babel/preset-env": "^7.15.8",
+    "autoprefixer": "^10.3.7",
     "babel-loader": "^8.2.2",
     "css-loader": "^6.4.0",
+    "cssnano": "^5.0.8",
     "dotenv-webpack": "^7.0.3",
     "mini-css-extract-plugin": "^2.4.2",
     "postcss-loader": "^6.2.0",
