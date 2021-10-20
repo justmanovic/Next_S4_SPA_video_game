@@ -25,7 +25,7 @@ module.exports = {
           },
         },
       },
-
+      
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
 
       {
@@ -53,5 +53,5 @@ module.exports = {
     new Dotenv()
   ],
 
-  mode: process.env.NODE_ENV,
+  mode: 'production',
 };

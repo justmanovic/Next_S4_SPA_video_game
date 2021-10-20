@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV === 'production') {
+if (mode === 'production') {
   module.exports = {
     plugins: [
       require('autoprefixer'),
