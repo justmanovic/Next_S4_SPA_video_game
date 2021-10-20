@@ -15,7 +15,6 @@ const setRoute = (selectedPlatform = "") => {
   pageArgument = path[1] || "";
 
   var pageContent = document.querySelector("#pageContent");
-  console.log("pageArgument :", pageArgument, "Selected Plateforme : ", selectedPlatform)
   route[path[0]](pageArgument, selectedPlatform)
   //  routes[pagelist]
 
