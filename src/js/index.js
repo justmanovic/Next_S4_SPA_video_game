@@ -4,9 +4,7 @@ const searchForm = document.querySelector("#search-form")
 const findGameInput = document.querySelector("#find-game")
 const selectPlatform = document.querySelector("select")
 const route = routes.default
-console.log("hello")
 
-console.log(process.env.NODE_ENV)
 
 
 let pageArgument;
@@ -35,7 +33,7 @@ selectPlatform.addEventListener("change", () => setRoute(selectPlatform[selectPl
 
 
 searchForm.addEventListener("submit", () => {
-  searchForm.action = `index-webpack.html?#/${findGameInput.value.replace(/\s+/g, "-")}`
+  searchForm.action = `index.html?#/${findGameInput.value.replace(/\s+/g, "-")}`
   console.log("1", findGameInput.value.replace(/\s+/g, "-"))
 })
 
