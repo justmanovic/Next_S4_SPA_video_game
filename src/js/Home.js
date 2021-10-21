@@ -23,7 +23,7 @@ function Home(argument = "", selectedPlatform = "") {
       if (argument) {
         finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page;
       }
-      // console.log("url final :", finalURL)
+      console.log("url final :", finalURL)
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
@@ -36,34 +36,30 @@ function Home(argument = "", selectedPlatform = "") {
               .map(platformObject => platformObject.platform.name).includes(selectedPlatform))
           }
 
-          console.log("articleList", articleList)
+          console.log(articleList)
 
-          articleList.forEach((article) => {
-            // console.log(article.parent_platforms.map(platform => platform.platform).join(', '))
-            let tabConsole = article.parent_platforms.map(platform => platform.platform.name)
-            // let match = { "PC": '<i class="fab fa-windows"></i>', 'PlayStation', '<i class="fab fa-playstation"></i>'}
 
-            // tab2 = tabConsole.map(el => {
-            //   if (el === match.key)
-            //     return match.value
-            // })
+          articleList.forEach((article, index) => {
 
             let tabConsoleLogo = []
+            // console.log(article.parent_platforms.map(platform => platform.platform).join(', '))
+            if (article.parent_platforms !== undefined) {
+              let tabConsole = article.parent_platforms.map(platform => platform.platform.name)
 
-            tabConsole.forEach(console => {
-              if (console === "PC")
-                tabConsoleLogo.push('<i class="fab fa-windows"></i>')
-              else if (console === "PlayStation")
-                tabConsoleLogo.push('<i class="fab fa-playstation"></i>')
-              else if (console === "Xbox")
-                tabConsoleLogo.push('<i class="fab fa-xbox"></i>')
-              else if (console === "Nintendo")
-                tabConsoleLogo.push('Nintendo')
-              else if (console === "Apple Macintosh")
-                tabConsoleLogo.push('<i class="fas fa-apple-alt"></i>')
-            })
+              tabConsole.forEach(console => {
+                if (console === "PC")
+                  tabConsoleLogo.push('<i class="fab fa-windows"></i>')
+                else if (console === "PlayStation")
+                  tabConsoleLogo.push('<i class="fab fa-playstation"></i>')
+                else if (console === "Xbox")
+                  tabConsoleLogo.push('<i class="fab fa-xbox"></i>')
+                else if (console === "Nintendo")
+                  tabConsoleLogo.push('Nintendo')
+                else if (console === "Apple Macintosh")
+                  tabConsoleLogo.push('<i class="fas fa-apple-alt"></i>')
+              })
+            }
 
-            console.log(tabConsole)
             articles += `
                   <div class="cardGame">
                       <a href="#pagedetail/${article.id}"><div><img src=${article.background_image}></img></div></a>
@@ -95,3 +91,5 @@ function Home(argument = "", selectedPlatform = "") {
 
 
 export default Home;
+
+
