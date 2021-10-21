@@ -10,37 +10,45 @@ function Home(argument = "", selectedPlatform = "") {
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
     let articles = "";
+    let searchedPage = 1;
     let showMoreButton = document.querySelector("#show-more")
+    let nbTimesBtnClicked = 0
 
     showMoreButton.addEventListener("click", () => {
-      fetchList("https://api.rawg.io/api/games", "")
+      searchedPage += 1
+      nbTimesBtnClicked += 1
+      console.log(nbTimesBtnClicked)
+      fetchList("https://api.rawg.io/api/games", cleanedArgument, searchedPage)
+
+      if (nbTimesBtnClicked > 1)
+        showMoreButton.classList.add("hidden")
+
     })
 
-    const fetchList = (url, argument) => {
-      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page_size=27";
+    const fetchList = (url, argument, page) => {
+      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page=" + page + "&page_size=9";
       if (argument) {
-        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page_size=27";
+        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page + "&page_size=9";
       }
       console.log("url final :", finalURL)
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
         .then((response) => {
+          let countResults = response.count
+          console.log(countResults)
           let articleList = response.results
-          // console.log("article liste 1 :", articleList)
           if (selectedPlatform !== "") {
-            // console.log("je suis dans le if selected platform et plateform : ", selectedPlatform)
             articleList = articleList.filter(article => article.platforms
               .map(platformObject => platformObject.platform.name).includes(selectedPlatform))
           }
+          console.log("articleList", articleList)
 
-          console.log(articleList)
 
-
-          articleList.forEach((article, index) => {
+          articleList.forEach((article) => {
             let tabConsoleLogo = []
-            // console.log(article.parent_platforms.map(platform => platform.platform).join(', '))
             if (article.parent_platforms !== undefined) {
+
               let tabConsole = article.parent_platforms.map(platform => platform.platform.name)
 
               tabConsole.forEach(console => {
@@ -56,7 +64,6 @@ function Home(argument = "", selectedPlatform = "") {
                   tabConsoleLogo.push('<i class="fas fa-apple-alt"></i>')
               })
             }
-
             articles += `
                   <div class="cardGame">
                       <a href="#pagedetail/${article.id}"><div><img src=${article.background_image}></img></div></a>
@@ -66,19 +73,23 @@ function Home(argument = "", selectedPlatform = "") {
                 `;
           });
           document.querySelector(".page-list .articles").innerHTML = articles;
+
         });
     };
 
-    fetchList("https://api.rawg.io/api/games", cleanedArgument);
+    fetchList("https://api.rawg.io/api/games", cleanedArgument, searchedPage);
   };
+
 
   const render = () => {
     pageContent.innerHTML = `
+      
       <section class="page-list">
         <div class="articles">...loading</div>
       </section>
       <button class="show-more" id="show-more" >Show more</button>
     `;
+
     preparePage();
   };
 
@@ -87,8 +98,3 @@ function Home(argument = "", selectedPlatform = "") {
 
 
 export default Home;
-
-
-function showResult(index, tab) {
-  
-}
