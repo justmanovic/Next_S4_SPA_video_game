@@ -10,18 +10,16 @@ function Home(argument = "", selectedPlatform = "") {
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
     let articles = "";
-    let searchedPage = 1;
     let showMoreButton = document.querySelector("#show-more")
 
     showMoreButton.addEventListener("click", () => {
-      searchedPage += 1
-      fetchList("https://api.rawg.io/api/games", "", searchedPage)
+      fetchList("https://api.rawg.io/api/games", "")
     })
 
-    const fetchList = (url, argument, page) => {
-      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page=" + page;
+    const fetchList = (url, argument) => {
+      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page_size=27";
       if (argument) {
-        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page;
+        finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page_size=27";
       }
       console.log("url final :", finalURL)
 
@@ -40,7 +38,6 @@ function Home(argument = "", selectedPlatform = "") {
 
 
           articleList.forEach((article, index) => {
-
             let tabConsoleLogo = []
             // console.log(article.parent_platforms.map(platform => platform.platform).join(', '))
             if (article.parent_platforms !== undefined) {
@@ -72,12 +69,11 @@ function Home(argument = "", selectedPlatform = "") {
         });
     };
 
-    fetchList("https://api.rawg.io/api/games", cleanedArgument, searchedPage);
+    fetchList("https://api.rawg.io/api/games", cleanedArgument);
   };
 
   const render = () => {
     pageContent.innerHTML = `
-      
       <section class="page-list">
         <div class="articles">...loading</div>
       </section>
@@ -93,3 +89,6 @@ function Home(argument = "", selectedPlatform = "") {
 export default Home;
 
 
+function showResult(index, tab) {
+  
+}
