@@ -176,3 +176,19 @@ button.show-more:hover {
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
+
+.screenshots {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.screenshots > div {
+  width: 32rem;
+  height: 25rem;
+  object-fit: cover;
+}
+
+.screenshots > div > img {
+  width: 100%;
+  height: 100%;
+}

@@ -8,6 +8,7 @@ function PageDetail(argument) {
 
   const preparePage = () => {
     let cleanedArgument = argument.replace(/\s+/g, "-");
+
     const fetchGame = (url, argument) => {
       let finalURL = url + argument + "?key=" + KEY;
       console.log(finalURL)
@@ -38,14 +39,37 @@ function PageDetail(argument) {
           articleDOM.querySelector("p.buy").innerHTML = storesStr
           articleDOM.querySelector(".img-game > a").href = website
           articleDOM.querySelector(".img-game > a").target = "_blank"
-
-
-
-
         });
     };
 
+
+    const getScreenshots = (url, argument) => {
+      let URL = url + argument + "?key=" + KEY;
+
+      fetch(URL)
+      .then((response) => response.json())
+      .then((response) => {
+        let { id } = response;
+        let urlScreenshot = url + id +"/screenshots" + "?key=" + KEY
+        console.log(urlScreenshot)
+
+        fetch(urlScreenshot)
+          .then((response) => response.json())
+          .then((response) => {
+
+            response.results.forEach(result => {
+              let image = document.createElement("img")
+              let divImage = document.createElement("div")
+              image.src = result.image
+              divImage.append(image)
+              document.querySelector(".screenshots").append(divImage)
+            })
+          })
+      })
+    }
+    
     fetchGame("https://api.rawg.io/api/games/", cleanedArgument);
+    getScreenshots("https://api.rawg.io/api/games/", cleanedArgument);
   };
 
   const render = () => {
@@ -91,6 +115,8 @@ function PageDetail(argument) {
           <p class="buy"></p>
           <h2>TRAILERS</h2>
           <h2>SCREENSHOTS</h2>
+          <div class="screenshots">
+          </div>
           <h2>YOUTUBE</h2>
           <h2>SIMILAR GAMES</h2>
 
