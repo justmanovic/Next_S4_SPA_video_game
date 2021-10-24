@@ -145,9 +145,9 @@ body {
         height: 100%;
         object-fit: cover;
 
-        &:hover {
-          opacity: 0.8;
-        }
+        // &:hover {
+        //   opacity: 0.1;
+        // }
       }
     }
   }
@@ -230,4 +230,27 @@ button.show-more {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+}
+
+.div-img-cardgame {
+  position: relative;
+  .rating {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  }
+
+  img {
+    transition: 0.25s all;
+  }
+
+  &:hover img {
+    opacity: 0.1;
+  }
+
+  &:hover .rating {
+    display: block;
+  }
 }

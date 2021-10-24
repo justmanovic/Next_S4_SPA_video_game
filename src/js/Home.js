@@ -17,20 +17,18 @@ function Home(argument = "", selectedPlatform = "") {
     showMoreButton.addEventListener("click", () => {
       searchedPage += 1
       nbTimesBtnClicked += 1
-      console.log(nbTimesBtnClicked)
       fetchList("https://api.rawg.io/api/games", cleanedArgument, searchedPage)
 
       if (nbTimesBtnClicked > 1)
         showMoreButton.classList.add("hidden")
-
     })
 
     const fetchList = (url, argument, page) => {
-      let finalURL = url + "?dates=2022-01-01,2022-12-31" + "&key=" + KEY + "&page=" + page + "&page_size=9";
+      let finalURL = url + "?dates=2021-01-01,2021-12-31" + "&key=" + KEY + "&page=" + page + "&page_size=9";
       if (argument) {
         finalURL = url + "?search=" + argument + "&search_precise=true" + "&key=" + KEY + "&page=" + page + "&page_size=9";
       }
-      console.log("url final :", finalURL)
+      // console.log("url final :", finalURL)
 
       fetch(`${finalURL}`)
         .then((response) => response.json())
@@ -66,7 +64,12 @@ function Home(argument = "", selectedPlatform = "") {
             }
             articles += `
                   <div class="cardGame">
-                      <a href="#pagedetail/${article.id}"><div><img src=${article.background_image}></img></div></a>
+                      <a href="#pagedetail/${article.id}">
+                        <div class="div-img-cardgame">
+                          <span class="rating">${article.rating}/5 - ${article.ratings_count} votes</span>
+                          <img src=${article.background_image}>
+                        </div>
+                      </a>
                       <h1>${article.name}</h1>
                     <p>${tabConsoleLogo.join("")}</p>
                   </div>

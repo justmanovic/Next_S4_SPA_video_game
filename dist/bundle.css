@@ -122,9 +122,6 @@ body .cardGame > a > div > img {
   height: 100%;
   object-fit: cover;
 }
-body .cardGame > a > div > img:hover {
-  opacity: 0.8;
-}
 
 .hidden {
   display: none;
@@ -197,4 +194,24 @@ button.show-more:hover {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
+}
+
+.div-img-cardgame {
+  position: relative;
+}
+.div-img-cardgame .rating {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+.div-img-cardgame img {
+  transition: 0.25s all;
+}
+.div-img-cardgame:hover img {
+  opacity: 0.1;
+}
+.div-img-cardgame:hover .rating {
+  display: block;
 }
