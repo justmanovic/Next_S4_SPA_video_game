@@ -67,9 +67,40 @@ function PageDetail(argument) {
           })
       })
     }
+
+    const getTrailers = (url, argument) => {
+      let URL = url + argument + "?key=" + KEY;
+
+      fetch(URL)
+      .then((response) => response.json())
+      .then((response) => {
+        let { id } = response;
+        let urlMovies = url + id + "/movies" + "?key=" + KEY
+        console.log(urlMovies)
+
+        fetch(urlMovies)
+          .then((response) => response.json())
+          .then((response) => {
+
+            response.results.forEach(result => {
+              let movie = document.createElement("video")
+              let divMovie = document.createElement("div")
+              movie.src = result.data["480"]
+              movie.setAttribute("width", "500");
+              // movie.setAttribute("height", "480");
+              movie.setAttribute("controls", "controls");
+              divMovie.append(movie)
+              document.querySelector(".trailers").append(divMovie)
+              console.log("trailer", result.data["480"])
+            })
+          })
+      })
+    }
     
     fetchGame("https://api.rawg.io/api/games/", cleanedArgument);
     getScreenshots("https://api.rawg.io/api/games/", cleanedArgument);
+    getTrailers("https://api.rawg.io/api/games/", cleanedArgument);
+
   };
 
   const render = () => {
@@ -111,14 +142,12 @@ function PageDetail(argument) {
               <p class="tags"></p>
             </div>
           </div>
+          <h2>TRAILERS</h2>
+          <div class="trailers"></div>
+          <h2>SCREENSHOTS</h2>
+          <div class="screenshots"></div>
           <h2>BUY</h2>
           <p class="buy"></p>
-          <h2>TRAILERS</h2>
-          <h2>SCREENSHOTS</h2>
-          <div class="screenshots">
-          </div>
-          <h2>YOUTUBE</h2>
-          <h2>SIMILAR GAMES</h2>
 
         </div>
       </section>
